@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Yusri Helper</title>
+	<link rel="stylesheet" href="styles/yusri.css">
+	<script src="scripts/yusri.js" defer></script>
+	<script src="scripts/howler.min.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="top-section">
+			<div class="top-row">
+				<div class="button heads" id="preferred" data-notify=""></div>
+				<div class="stats">
+					<div class="turn-flips" id="turn-flips">3/16</div>
+					<div class="luck" id="luck">🍀 50.7%</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<div class="button" id="thumb" data-notify="">👍</div>
+				<div class="button" id="minotaur" data-notify="">🐂</div>
+				<div class="button" id="edgar" data-notify="">👑</div>
+				<div class="button" id="scoundrel" data-notify="">💰</div>
+				<div class="button" id="chance" data-notify="">🎲</div>
+			</div>
+			<div class="turns">
+				<div class="turn-button mine" id="my-turn">My Turn</div>
+				<div class="turn-button opponent" id="opponent-turn">Other Turn</div>
+			</div>
+		</div>
+		<div class="flip" id="flip">
+			<div class="coin" id="coin">
+				<div class="side tails"></div>
+				<div class="side heads"></div>
+			</div>
+		</div>
+		<div class="history"></div>
+	</div>
+</body>
+</html>

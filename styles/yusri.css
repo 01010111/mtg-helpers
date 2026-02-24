@@ -1,0 +1,261 @@
+:root {
+	/* Colors */
+	--color-background: #e2ecec;
+	--color-primary: #111e2d;
+	--color-secondary: #a8acb0;
+	--color-tertiary: #e2ebf3;
+	--color-highlight: #15c23d;
+	--color-notification: #c23d15;
+	/* Styles */
+	--border-primary: 2px solid var(--color-secondary);
+	--border-selected: 2px solid var(--color-highlight);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--color-background);
+	color: var(--color-primary);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	user-select: none;
+	perspective: 1200px;
+}
+
+.content {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 32px;
+	perspective: 1200px;
+	height: calc(100svh - 64px);
+
+	& .top-section {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	& .top-row {
+		display: flex;
+		flex-direction: row;
+
+		justify-content: space-between;
+
+		& .button {
+			border: none !important;
+			background-size: cover;
+			width: 64px;
+			height: 64px;
+
+			&.heads {
+				background-image: url(../assets/coin-heads.png);
+			}
+
+			&.tails {
+				background-image: url(../assets/coin-tails.png);
+			}
+		}
+
+		& .stats {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 4px;
+			width: auto;
+
+			& .turn-flips {
+				width: auto;
+				font-size: 32px;
+				font-weight: bold;
+			}
+
+			& .luck {
+				color: var(--color-highlight);
+				width: auto;
+				font-weight: bold;
+			}
+		}
+	}
+
+	& .buttons {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		font-size: 20px;
+		gap: 8px;
+
+		& .button:not(.active) {
+			/* opacity: 0.5; */
+		}
+	}
+
+	& .turns {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		gap: -2px;
+
+		& .turn-button {
+			border: var(--border-primary);
+			padding: 8px 24px;
+			width: auto;
+			font-weight: bold;
+
+			&.mine {
+				border-radius: 8px 0 0 8px;
+				margin-right: -2px;
+				&:active {
+					background: white;
+					border-color: var(--color-highlight) !important;
+					z-index: 2;
+				}
+			}
+
+			&.opponent {
+				border-left: 2px solid var(--color-secondary);
+				border-radius: 0 8px 8px 0;
+				&:active {
+					background: white;
+					border-color: var(--color-notification) !important;
+					z-index: 2;
+				}
+
+			}
+
+		}
+	}
+
+	& .flip {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 64px 0;
+		perspective: 1200px;
+
+		& .coin {
+			width: 50vw;
+			height: 50vw;
+			max-width: 250px;
+			max-height: 250px;
+			position: relative;
+			transform-style: preserve-3d;
+			/* Perspective here keeps the 3D localized to the coin */
+			perspective: 1000px;
+		}
+
+		& .side {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			backface-visibility: hidden;
+			background-size: cover;
+
+			&.heads {
+				background-image: url(../assets/coin-heads.png);
+				z-index: 2;
+			}
+
+			&.tails {
+				background-image: url(../assets/coin-tails.png);
+				transform: rotateY(180deg);
+			}
+		}
+	}
+
+	& .history {
+		display: block !important;
+		width: 100%;
+		white-space: normal;
+
+		/* These three lines force the wrap mid-span */
+		overflow-wrap: anywhere;
+		word-break: break-all;
+		line-break: anywhere;
+		height: 64px;
+		overflow: hidden;
+
+		& span.log-group {
+			margin: 0 4px;
+			display: inline !important;
+			width: auto !important;
+			/* Ensure no nowrap is inherited */
+			white-space: normal !important;
+
+			&:not(.current) {
+				opacity: 0.25;
+			}
+		}
+	}
+
+}
+
+.button {
+	border: var(--border-primary);
+	border-radius: 8px;
+	display: flex;
+	padding: 8px;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	width: -webkit-fill-available;
+	position: relative;
+
+	&.active {
+		border: var(--border-selected);
+		background-color: white;
+	}
+
+	&:active {
+		background: white;
+	}
+
+	&:not([data-notify=''])::after {
+		content: attr(data-notify);
+		position: absolute;
+		width: 24px;
+		height: 24px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		background-color: var(--color-notification);
+		color: var(--color-tertiary);
+		top: -12px;
+		right: -8px;
+		font-size: 12px;
+	}
+}
+
+/* --- Animations --- */
+@keyframes coinJump {
+
+}
+
+@keyframes spinHeads {
+    0% {
+		transform: translateZ(0) rotateY(0);
+	}
+	50% {
+		transform: translateZ(400px) rotateY(180deg);
+	}
+    100% {
+		transform: translateZ(0) rotateY(360deg);
+	}
+}
+
+@keyframes spinTails {
+    0% {
+		transform: translateZ(0) rotateY(0);
+	}
+	50% {
+		transform: translateZ(400px) rotateY(270deg);
+	}
+    100% {
+		transform: translateZ(0) rotateY(540deg);
+	}
+}
+
+.animate-spin-heads { animation: spinHeads 0.5s ease-out forwards; }
+.animate-spin-tails { animation: spinTails 0.5s ease-out forwards; }
