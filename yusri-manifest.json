@@ -1,0 +1,15 @@
+{
+  "name": "Yusri Helper",
+  "short_name": "Yusri",
+  "start_url": "./yusri.html",
+  "display": "standalone",
+  "background_color": "#222222",
+  "theme_color": "#222222",
+  "icons": [
+    {
+      "src": "assets/yusri-icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}

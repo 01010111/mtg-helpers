@@ -4,8 +4,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Yusri Helper</title>
 	<link rel="stylesheet" href="styles/yusri.css">
+	<link rel="manifest" href="yusri-manifest.json">
+	<meta name="theme-color" content="#222222">
 	<script src="scripts/yusri.js" defer></script>
 	<script src="scripts/howler.min.js"></script>
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('yusri-sw.js')
+				.then(reg => console.log('Service Worker registered'))
+				.catch(err => console.log('Service Worker registration failed', err));
+		}
+	</script>
 </head>
 <body>
 	<div class="content">
