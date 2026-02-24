@@ -109,7 +109,7 @@ button_chance.addEventListener("click", () => {
 	button_chance.classList.toggle("active");
 	if (!chance_active) {
 		chance_luck_counters = 0;
-		button_chance.setAttribute('data-nofify', '');
+		button_chance.setAttribute('data-notify', '');
 	}
 });
 function add_luck_counter() {
